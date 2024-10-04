@@ -5,6 +5,7 @@ func Sum(numbers []int) int {
 	// for i := 0; i <5; i++ {
 		// sum += numbers[i]
 	for _, num := range numbers {
+		// fmt.Println(num)
 		sum += num
 	}
 	return sum
@@ -18,4 +19,18 @@ func SumAll(slices ...[]int) []int {
 	}
 
 	return sums
+}
+
+func SumAllTails(slices ...[]int) []int{
+	result := []int{}
+	for _, slice := range slices {
+
+		if len(slice) == 0 {
+			result = append(result, 0)
+		} else {
+			tail := slice[1:]
+			result = append(result, Sum(tail))
+		}
+	}
+	return result
 }
