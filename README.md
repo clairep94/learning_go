@@ -117,3 +117,23 @@ func inc(x *int) {
 
 Concurrency:
 - splitting sequences up into packages that can be done at the same time
+
+```go
+package main
+import (
+  "fmt"
+  "time"
+)
+
+func main() {
+  go count("sheep") //goroutine -- runs both at same time vs. sequence
+  count("fish")
+}
+
+func count(thing string) {
+  for i := 1; true; i++ {
+    fmt.Println(i, thing)
+    time.Sleep(time.Milliseconds * 500)
+  }
+}
+```
