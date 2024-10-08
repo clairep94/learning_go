@@ -60,8 +60,7 @@ func main() { // entrypoint
   }
 
   // Error handling -- go doesn't have exceptions
-  result, err := sqrt(16)
-  if err != nil {
+  if result, err := sqrt(16); err != nil {
     fmt.Println(err)
   } else {
     fmt.Println(result)
