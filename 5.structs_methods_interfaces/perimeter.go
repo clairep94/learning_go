@@ -31,7 +31,7 @@ func (r *Rectangle) SetHeight(h float64) {
 	r.Height = h
 }
 
-var somevariable := 0
+var somevariable = 0
 
 
 type Circle struct {
