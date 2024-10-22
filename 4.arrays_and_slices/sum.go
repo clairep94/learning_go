@@ -11,6 +11,7 @@ func Sum(numbers []int) int {
 	return sum
 }
 
+//variadic args ...[]int
 func SumAll(slices ...[]int) []int {
 	sums := []int{}
 

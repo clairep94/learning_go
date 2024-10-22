@@ -11,7 +11,8 @@ func Hello(country string, name string) string {
 		"it": "Ciao, ",
 		"de": "Hallo, ",
 	}
-	if internationalisation[country] == "" {
+	// val of map, bool - does the val exist
+	if _, ok := internationalisation[country]; !ok {
 		country = "en"
 	}
 	if name == "" {
