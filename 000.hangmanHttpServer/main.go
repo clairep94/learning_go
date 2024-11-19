@@ -27,6 +27,9 @@ func homePage(w http.ResponseWriter, req *http.Request){
 
 // TODO: add lookup against cache, how to do this with Go if it'll return 0 if not in the map instead of nil?
 func indexOfElem(elem string, arr []string) int {
+	// if _, ok := internationalisation[country]; !ok {
+	// 	country = "en"
+	// }
 	for i, el := range arr {
 		if elem == el {
 			return i
@@ -35,13 +38,13 @@ func indexOfElem(elem string, arr []string) int {
 	return -1
 }
 
-func splitWord(word string) []string {
-	return strings.Split(word, "")
+func splitWord() []string {
+	return strings.Split(secretWord, "")
 }
 
-func DisplayConcealedWord(word string, guesses []string) string {
+func DisplayConcealedWord() string {
 	display := []string{"Word:"}
-	for _, letter := range splitWord(word) {
+	for _, letter := range splitWord() {
 		if indexOfElem(letter, guesses) == -1 {
 			display = append(display, "_")
 		} else {
@@ -52,7 +55,7 @@ func DisplayConcealedWord(word string, guesses []string) string {
 }
 
 func DisplayCurrentGamestate() string {
-	response := DisplayConcealedWord(secretWord, guesses) + "\n"
+	response := DisplayConcealedWord() + "\n"
 	response += "Guesses: [" + strings.Join(guesses, ", ") + "]"
 	return response
 }
@@ -63,6 +66,10 @@ func DisplayCurrentGamestate() string {
 
 func isGameLost() bool {
 	return len(guesses) >= maxGuesses
+}
+
+func isGameWon() bool {
+
 }
 
 func hangmanGame(w http.ResponseWriter, req *http.Request){
@@ -113,7 +120,7 @@ func hangmanGame(w http.ResponseWriter, req *http.Request){
 
 	// lastTurn message
 	lastTurnMessage := g.Letter
-	if indexOfElem(g.Letter, splitWord(secretWord)) == -1 {
+	if indexOfElem(g.Letter, splitWord()) == -1 {
 		lastTurnMessage += " is wrong!"
 	} else {
 		lastTurnMessage += " is in the word!"
